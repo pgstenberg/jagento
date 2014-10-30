@@ -24,17 +24,9 @@ public class MagentoConnection extends XmlRpcConnection{
 		super(connectionUrl + "/index.php/api/xmlrpc/");
 	}
 	
-	public void login(String username,String password){
-		try {
+	public void login(String username,String password) throws InstantiationException, IllegalAccessException, XmlRpcException{
 			XmlRpcStringRespond returnSessionKey = sendRequest(new LoginRequest(username, password), XmlRpcStringRespond.class);
 			sessionKey = returnSessionKey.getValue();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (XmlRpcException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	public String invoiceOrder(int incrementId){
