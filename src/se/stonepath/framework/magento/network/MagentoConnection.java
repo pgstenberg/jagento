@@ -20,14 +20,29 @@ public class MagentoConnection extends XmlRpcConnection{
 	
 	private String sessionKey;
 	
+	private String username,password;
+	
 	public MagentoConnection(String connectionUrl) {
 		super(connectionUrl + "/index.php/api/xmlrpc/");
+		this.username = new String();
+		this.password = new String();
+	}
+	public MagentoConnection(String connectionUrl,String username,String password) {
+		super(connectionUrl + "/index.php/api/xmlrpc/");
+		this.username = username;
+		this.password = password;
 	}
 	
-	public void login(String username,String password) throws InstantiationException, IllegalAccessException, XmlRpcException{
-			XmlRpcStringRespond returnSessionKey = sendRequest(new LoginRequest(username, password), XmlRpcStringRespond.class);
+	
+	public void login(String _username,String _password) throws Exception{
+			XmlRpcStringRespond returnSessionKey = sendRequest(new LoginRequest(_username, _password), XmlRpcStringRespond.class);
 			sessionKey = returnSessionKey.getValue();
 	}
+	public void login() throws Exception{
+		XmlRpcStringRespond returnSessionKey = sendRequest(new LoginRequest(username, password), XmlRpcStringRespond.class);
+		sessionKey = returnSessionKey.getValue();
+	}
+	
 	
 	public String invoiceOrder(int incrementId){
 		return invoiceOrder(incrementId, "");
