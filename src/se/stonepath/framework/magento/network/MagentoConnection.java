@@ -35,12 +35,20 @@ public class MagentoConnection extends XmlRpcConnection{
 	
 	
 	public void login(String _username,String _password) throws Exception{
+		try{
 			XmlRpcStringRespond returnSessionKey = sendRequest(new LoginRequest(_username, _password), XmlRpcStringRespond.class);
 			sessionKey = returnSessionKey.getValue();
+		}catch(Exception e){
+			throw new Exception("Unable to login to host [" + e.getMessage() + "]");
+		}
 	}
 	public void login() throws Exception{
-		XmlRpcStringRespond returnSessionKey = sendRequest(new LoginRequest(username, password), XmlRpcStringRespond.class);
-		sessionKey = returnSessionKey.getValue();
+		try{
+			XmlRpcStringRespond returnSessionKey = sendRequest(new LoginRequest(username, password), XmlRpcStringRespond.class);
+			sessionKey = returnSessionKey.getValue();
+		}catch(Exception e){
+			throw new Exception("Unable to login to host [" + e.getMessage() + "]");
+		}
 	}
 	
 	
