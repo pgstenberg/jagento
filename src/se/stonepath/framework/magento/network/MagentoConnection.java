@@ -8,7 +8,6 @@ import se.stonepath.framework.magento.network.requests.MagentoCall;
 import se.stonepath.framework.magento.network.requests.OrderInfoRequest;
 import se.stonepath.framework.magento.network.requests.ShipmentCreateRequest;
 import se.stonepath.framework.rpcxml.XmlRpcConnection;
-import se.stonepath.framework.rpcxml.XmlRpcException;
 import se.stonepath.framework.rpcxml.XmlRpcRespond;
 import se.stonepath.framework.rpcxml.respond.XmlRpcCollectionRespond;
 import se.stonepath.framework.rpcxml.respond.value.XmlRpcStringRespond;
@@ -55,14 +54,14 @@ public class MagentoConnection extends XmlRpcConnection{
 	}
 	
 	
-	public String invoiceOrder(int incrementId){
+	public String invoiceOrder(int incrementId) throws Exception{
 		return invoiceOrder(incrementId, "");
 	}
-	public String shipOrder(int incrementId){
+	public String shipOrder(int incrementId) throws Exception{
 		return shipOrder(incrementId, "");
 	}
 	
-	public String invoiceOrder(int incrementId,String comment){
+	public String invoiceOrder(int incrementId,String comment) throws Exception{
 		
 		OrderInfoRequest orderInfoRequest = new OrderInfoRequest(incrementId);
 		XmlRpcCollectionRespond orderInfoRespond = call(orderInfoRequest,XmlRpcCollectionRespond.class);
@@ -83,7 +82,7 @@ public class MagentoConnection extends XmlRpcConnection{
 	}
 	
 	
-	public String shipOrder(int incrementId,String comment){
+	public String shipOrder(int incrementId,String comment) throws Exception{
 		OrderInfoRequest orderInfoRequest = new OrderInfoRequest(incrementId);
 		XmlRpcCollectionRespond orderInfoRespond = call(orderInfoRequest,XmlRpcCollectionRespond.class);
 		
@@ -102,20 +101,11 @@ public class MagentoConnection extends XmlRpcConnection{
 		return shipmentCreateRespond.getValue();
 	}
 	
-	public <T extends XmlRpcRespond> T call(MagentoCall call,Class<T> respond){
+	public <T extends XmlRpcRespond> T call(MagentoCall call,Class<T> respond) throws Exception{
+
+		call.prepareCall(sessionKey);
+		return sendRequest(call,respond);
 		
-		try {
-			call.prepareCall(sessionKey);
-			return sendRequest(call,respond);
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (XmlRpcException e) {
-			e.printStackTrace();
-		}
-		
-		return null;
 	}
 	
 	
