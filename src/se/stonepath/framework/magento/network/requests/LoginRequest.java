@@ -20,24 +20,5 @@ public class LoginRequest extends XmlRpcRequest{
 		add(password);
 	}
 
-	/*
-	private String username,password;
-	public LoginRequest(MagentoConnection connection, String username,String password){
-		super(connection,"login");
-		this.username = username;
-		this.password = password;
-	}
-	@Override
-	public Object[] getContent(String sessionKey) {
-		Object[] loginParams = new Object[2];
-		loginParams[0] = username;
-		loginParams[1] = password;
-		
-		return loginParams;
-	}
-	@Override
-	protected MagentoRespond handleRespond(Object data) {
-		return new StringRespond((String)data);
-	}
-	*/
+
 }

@@ -35,9 +35,7 @@ public class MagentoConnection extends XmlRpcConnection{
 	
 	public void login(String _username,String _password) throws Exception{
 		try{
-			System.out.println("A");
 			XmlRpcStringRespond returnSessionKey = sendRequest(new LoginRequest(_username, _password), XmlRpcStringRespond.class);
-			System.out.println("B");
 			sessionKey = returnSessionKey.getValue();
 		
 		}catch(Exception e){
