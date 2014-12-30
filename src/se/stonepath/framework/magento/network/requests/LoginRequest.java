@@ -1,7 +1,7 @@
 package se.stonepath.framework.magento.network.requests;
 
 import se.stonepath.framework.magento.network.MagentoConnection;
-import se.stonepath.framework.rpcxml.XmlRpcRequest;
+import se.stonepath.framework.xmlrpc.XmlRpcRequest;
 
 
 

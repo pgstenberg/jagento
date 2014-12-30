@@ -7,10 +7,10 @@ import se.stonepath.framework.magento.network.requests.LoginRequest;
 import se.stonepath.framework.magento.network.requests.MagentoCall;
 import se.stonepath.framework.magento.network.requests.OrderInfoRequest;
 import se.stonepath.framework.magento.network.requests.ShipmentCreateRequest;
-import se.stonepath.framework.rpcxml.XmlRpcConnection;
-import se.stonepath.framework.rpcxml.XmlRpcRespond;
-import se.stonepath.framework.rpcxml.respond.XmlRpcCollectionRespond;
-import se.stonepath.framework.rpcxml.respond.value.XmlRpcStringRespond;
+import se.stonepath.framework.xmlrpc.XmlRpcConnection;
+import se.stonepath.framework.xmlrpc.XmlRpcRespond;
+import se.stonepath.framework.xmlrpc.respond.XmlRpcCollectionRespond;
+import se.stonepath.framework.xmlrpc.respond.value.XmlRpcStringRespond;
 
 
 public class MagentoConnection extends XmlRpcConnection{
