@@ -39,6 +39,7 @@ public class MagentoConnection extends XmlRpcConnection{
 			sessionKey = returnSessionKey.getValue();
 		
 		}catch(Exception e){
+			e.printStackTrace();
 			throw new Exception("Unable to login to host [" + e.getMessage() + "]");
 		}
 	}
@@ -100,10 +101,9 @@ public class MagentoConnection extends XmlRpcConnection{
 	}
 	
 	public <T extends XmlRpcRespond> T call(MagentoCall call,Class<T> respond) throws Exception{
-
 		call.prepareCall(sessionKey);
-		return sendRequest(call,respond);
 		
+		return sendRequest(call,respond);
 	}
 	
 	

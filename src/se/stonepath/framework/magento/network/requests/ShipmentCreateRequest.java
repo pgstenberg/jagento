@@ -1,7 +1,7 @@
 package se.stonepath.framework.magento.network.requests;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Vector;
 
 import se.stonepath.framework.magento.network.MagentoConnection;
 
@@ -29,8 +29,8 @@ public class ShipmentCreateRequest extends MagentoCall{
 	}
 
 	@Override
-	public Vector<Object> getParameters() {
-		Vector<Object> params = new Vector<Object>();
+	public ArrayList<Object> getParameters() {
+		ArrayList<Object> params = new ArrayList<Object>();
 		params.add(incrementId);
 		params.add(invoiceQty);
 		

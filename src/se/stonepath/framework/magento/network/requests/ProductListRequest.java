@@ -1,6 +1,6 @@
 package se.stonepath.framework.magento.network.requests;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import se.stonepath.framework.magento.network.MagentoConnection;
 
@@ -17,8 +17,8 @@ public class ProductListRequest extends MagentoCall{
 	}
 
 	@Override
-	public Vector<Object> getParameters() {
-		return new Vector<Object>();
+	public ArrayList<Object> getParameters() {
+		return new ArrayList<Object>();
 	}
 
 

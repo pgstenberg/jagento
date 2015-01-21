@@ -1,6 +1,6 @@
 package se.stonepath.framework.magento.network.requests;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import se.stonepath.framework.magento.network.MagentoConnection;
 
@@ -35,8 +35,8 @@ public class OrderStatusRequest extends MagentoCall{
 	}
 
 	@Override
-	public Vector<Object> getParameters() {
-		Vector<Object> params = new Vector<Object>();
+	public ArrayList<Object> getParameters() {
+		ArrayList<Object> params = new ArrayList<Object>();
 		params.add(incrementId);
 		params.add(status);
 		

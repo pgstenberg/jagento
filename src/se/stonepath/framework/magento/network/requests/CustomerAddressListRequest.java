@@ -1,6 +1,6 @@
 package se.stonepath.framework.magento.network.requests;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import se.stonepath.framework.magento.network.MagentoConnection;
 
@@ -22,8 +22,8 @@ public class CustomerAddressListRequest extends MagentoCall{
 	}
 
 	@Override
-	public Vector<Object> getParameters() {
-		Vector<Object> parameters = new Vector<Object>();
+	public ArrayList<Object> getParameters() {
+		ArrayList<Object> parameters = new ArrayList<Object>();
 		parameters.add(customerId);
 		return parameters;
 	}

@@ -1,28 +1,28 @@
 package se.stonepath.framework.magento.network.requests;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
-import se.stonepath.framework.magento.network.MagentoConnection;
 import se.stonepath.framework.xmlrpc.XmlRpcRequest;
 
 
 
 
-public abstract class MagentoCall extends XmlRpcRequest{
+public abstract class MagentoCall extends XmlRpcRequest {
 
 	
-	private static final long serialVersionUID = MagentoConnection.serialVersionUID;
 
-	@Override
-	public String methodName() {
-		return "call";
-	}
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7130358093496497423L;
 
 	public abstract String callName();
-	public abstract Vector<Object> getParameters();
+	public abstract ArrayList<Object> getParameters();
 
 	
 	public void prepareCall(String sessionKey){
+		
+		
 		
 		clear();
 		
@@ -31,6 +31,16 @@ public abstract class MagentoCall extends XmlRpcRequest{
 		
 		add(getParameters());
 		
+		/*
+		for(Object param : getParameters())
+			add(param);
+		*/
 	}
+
+	@Override
+	public String getMethodName() {
+		return "call";
+	}
+
 
 }

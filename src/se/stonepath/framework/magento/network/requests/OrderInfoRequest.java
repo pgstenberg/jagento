@@ -1,6 +1,6 @@
 package se.stonepath.framework.magento.network.requests;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import se.stonepath.framework.magento.network.MagentoConnection;
 
@@ -23,8 +23,8 @@ public class OrderInfoRequest extends MagentoCall{
 	}
 
 	@Override
-	public Vector<Object> getParameters() {
-		Vector<Object> paramVector = new Vector<Object>();
+	public ArrayList<Object> getParameters() {
+		ArrayList<Object> paramVector = new ArrayList<Object>();
 		paramVector.add(incrementId);
 		return paramVector;
 	}

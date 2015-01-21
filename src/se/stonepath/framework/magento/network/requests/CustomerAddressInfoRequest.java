@@ -1,12 +1,14 @@
 package se.stonepath.framework.magento.network.requests;
 
-import java.util.Vector;
-
-import se.stonepath.framework.magento.network.MagentoConnection;
+import java.util.ArrayList;
 
 public class CustomerAddressInfoRequest extends MagentoCall{
-
-	private static final long serialVersionUID = MagentoConnection.serialVersionUID;
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3243827152241620754L;
 	
 	
 	private int addressId;
@@ -16,13 +18,12 @@ public class CustomerAddressInfoRequest extends MagentoCall{
 	
 	@Override
 	public String callName() {
-		// TODO Auto-generated method stub
 		return "customer_address.info";
 	}
 
 	@Override
-	public Vector<Object> getParameters() {
-		Vector<Object> parameters = new Vector<Object>();
+	public ArrayList<Object> getParameters() {
+		ArrayList<Object> parameters = new ArrayList<Object>();
 		parameters.add(addressId);
 		return parameters;
 	}
