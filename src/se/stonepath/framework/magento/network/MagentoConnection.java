@@ -17,17 +17,19 @@ public class MagentoConnection extends XmlRpcConnection{
 
 	public static final long serialVersionUID = 1L;
 	
+	private static final String URL_API = "/index.php/api/xmlrpc/";
+	
 	private String sessionKey;
 	
 	private String username,password;
 	
 	public MagentoConnection(String connectionUrl) {
-		super(connectionUrl + "/index.php/api/xmlrpc/");
+		super(connectionUrl + URL_API);
 		this.username = new String();
 		this.password = new String();
 	}
 	public MagentoConnection(String connectionUrl,String username,String password) {
-		super(connectionUrl + "/index.php/api/xmlrpc/");
+		super(connectionUrl + URL_API);
 		this.username = username;
 		this.password = password;
 	}
