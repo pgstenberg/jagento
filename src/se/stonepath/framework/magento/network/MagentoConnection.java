@@ -82,6 +82,17 @@ public class MagentoConnection extends XmlRpcConnection{
 		return invoiceCreateRespond.getValue();
 	}
 	
+	public boolean orderExists(int incrementId){
+		OrderInfoRequest orderIntoRequest = new OrderInfoRequest(incrementId);
+		try{
+			call(orderIntoRequest, XmlRpcCollectionRespond.class);
+		}catch(Exception e){
+			if(e.getMessage().toLowerCase().equals("requested order not exists."))
+				return false;
+		}
+		return true;
+	}
+	
 	
 	public String shipOrder(int incrementId,String comment) throws Exception{
 		OrderInfoRequest orderInfoRequest = new OrderInfoRequest(incrementId);
