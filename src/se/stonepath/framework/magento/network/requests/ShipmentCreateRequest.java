@@ -21,6 +21,12 @@ public class ShipmentCreateRequest extends MagentoCall{
 	public ShipmentCreateRequest(int incrementId,HashMap<Integer,Double> invoiceQty) {
 		this(incrementId,invoiceQty,"");
 	}
+	public ShipmentCreateRequest(int incrementId,String comment) {
+		this(incrementId, new HashMap<Integer, Double>(),comment);
+	}
+	public ShipmentCreateRequest(int incrementId) {
+		this(incrementId, new HashMap<Integer, Double>(),"");
+	}
 	
 	
 	@Override
@@ -32,7 +38,9 @@ public class ShipmentCreateRequest extends MagentoCall{
 	public ArrayList<Object> getParameters() {
 		ArrayList<Object> params = new ArrayList<Object>();
 		params.add(incrementId);
-		params.add(invoiceQty);
+		
+		if(!invoiceQty.isEmpty())
+			params.add(invoiceQty);
 		
 		if(!comment.equals(""))
 			params.add(comment);

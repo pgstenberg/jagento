@@ -1,7 +1,5 @@
 package se.stonepath.framework.magento.network;
 
-import java.util.HashMap;
-
 import se.stonepath.framework.magento.network.requests.InvoiceCreateRequest;
 import se.stonepath.framework.magento.network.requests.LoginRequest;
 import se.stonepath.framework.magento.network.requests.MagentoCall;
@@ -64,19 +62,7 @@ public class MagentoConnection extends XmlRpcConnection{
 	
 	public String invoiceOrder(int incrementId,String comment) throws Exception{
 		
-		OrderInfoRequest orderInfoRequest = new OrderInfoRequest(incrementId);
-		XmlRpcCollectionRespond orderInfoRespond = call(orderInfoRequest,XmlRpcCollectionRespond.class);
-		
-		HashMap<Integer,Double> invoiceQty = new HashMap<Integer,Double>();
-		
-		for(Object itemObject : (Object[])orderInfoRespond.get("items")){
-			@SuppressWarnings("unchecked")
-			HashMap<String,Object> itemData = (HashMap<String,Object>)itemObject;
-	
-			invoiceQty.put(Integer.parseInt((String)itemData.get("item_id")), Double.parseDouble((String)itemData.get("qty_ordered")));	
-		}
-		
-		InvoiceCreateRequest invoiceCreateRequest = new InvoiceCreateRequest(incrementId, invoiceQty,comment);
+		InvoiceCreateRequest invoiceCreateRequest = new InvoiceCreateRequest(incrementId,comment);
 		XmlRpcStringRespond invoiceCreateRespond = call(invoiceCreateRequest,XmlRpcStringRespond.class);
 
 		return invoiceCreateRespond.getValue();
@@ -95,19 +81,8 @@ public class MagentoConnection extends XmlRpcConnection{
 	
 	
 	public String shipOrder(int incrementId,String comment) throws Exception{
-		OrderInfoRequest orderInfoRequest = new OrderInfoRequest(incrementId);
-		XmlRpcCollectionRespond orderInfoRespond = call(orderInfoRequest,XmlRpcCollectionRespond.class);
 		
-		HashMap<Integer,Double> invoiceQty = new HashMap<Integer,Double>();
-		
-		for(Object itemObject : (Object[])orderInfoRespond.get("items")){
-			@SuppressWarnings("unchecked")
-			HashMap<String,Object> itemData = (HashMap<String,Object>)itemObject;
-	
-			invoiceQty.put(Integer.parseInt((String)itemData.get("item_id")), Double.parseDouble((String)itemData.get("qty_ordered")));	
-		}
-		
-		ShipmentCreateRequest shipmentCreateRequest = new ShipmentCreateRequest(incrementId, invoiceQty,comment);
+		ShipmentCreateRequest shipmentCreateRequest = new ShipmentCreateRequest(incrementId,comment);
 		XmlRpcStringRespond shipmentCreateRespond = call(shipmentCreateRequest,XmlRpcStringRespond.class);
 
 		return shipmentCreateRespond.getValue();
