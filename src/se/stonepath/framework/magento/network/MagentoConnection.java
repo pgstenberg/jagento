@@ -62,6 +62,13 @@ public class MagentoConnection extends XmlRpcConnection{
 	
 	public String invoiceOrder(int incrementId,String comment) throws Exception{
 		
+		OrderInfoRequest orderInfoRequest = new OrderInfoRequest(incrementId);
+		
+		XmlRpcCollectionRespond orderInfo = call(orderInfoRequest, XmlRpcCollectionRespond.class);
+		
+		if(orderInfo.get("total_invoiced") != null)
+			return null;
+		
 		InvoiceCreateRequest invoiceCreateRequest = new InvoiceCreateRequest(incrementId,comment);
 		XmlRpcStringRespond invoiceCreateRespond = call(invoiceCreateRequest,XmlRpcStringRespond.class);
 
@@ -81,6 +88,12 @@ public class MagentoConnection extends XmlRpcConnection{
 	
 	
 	public String shipOrder(int incrementId,String comment) throws Exception{
+		
+		OrderInfoRequest orderInfoRequest = new OrderInfoRequest(incrementId);	
+		XmlRpcCollectionRespond orderInfo = call(orderInfoRequest, XmlRpcCollectionRespond.class);
+		
+		if(orderInfo.get("status").equals("complete"))
+			return null;
 		
 		ShipmentCreateRequest shipmentCreateRequest = new ShipmentCreateRequest(incrementId,comment);
 		XmlRpcStringRespond shipmentCreateRespond = call(shipmentCreateRequest,XmlRpcStringRespond.class);
